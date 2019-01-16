@@ -1,5 +1,3 @@
-# This is the default java spring boot project
-
 # Settings
 
 - spring 2.1.2.RELEASE
