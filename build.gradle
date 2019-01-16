@@ -1,0 +1,39 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.2.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.smilegate'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //web
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    //default setting
+    compileOnly 'org.projectlombok:lombok'
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.5.0'
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.5.0'
+
+    //database
+    runtimeOnly 'mysql:mysql-connector-java'
+
+    //test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
