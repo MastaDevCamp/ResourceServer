@@ -1,4 +1,4 @@
-package com.smilegate.masta.common.util;
+package com.smilegate.masta.resource.util;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

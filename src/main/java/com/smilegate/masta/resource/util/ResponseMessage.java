@@ -1,4 +1,4 @@
-package com.smilegate.masta.common.util;
+package com.smilegate.masta.resource.util;
 
 public class ResponseMessage {
     public static final String READ_USER = "회원 정보 조회 성공";

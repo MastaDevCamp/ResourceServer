@@ -1,4 +1,4 @@
-package com.smilegate.masta.common.util;
+package com.smilegate.masta.resource.util;
 
 public class StatusCode {
     public static final int OK = 200; //서버가 요청을 제대로 처리했다는 뜻이다. 이는 주로 서버가 요청한 페이지를 제공했다는 의미로 쓰인다.
