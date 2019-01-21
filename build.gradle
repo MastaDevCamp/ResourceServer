@@ -33,6 +33,7 @@ dependencies {
 
     //databaselom
     runtimeOnly group: 'mysql', name: 'mysql-connector-java', version: '8.0.13'
+    compile group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '1.3.2'
 
     //test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

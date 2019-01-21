@@ -8,4 +8,9 @@ public class ResponseMessage {
 	public static final String CONNECTION_SUCCESS ="git 연결 성공";
 
 	public static final String READ_GIT_LOG = "git log 완료";
+
+
+	// version 관리
+	public static final String NO_COMMITID = "commit 부재";
+	public static final String READ_COMMITID = "commit 조회 성공";
 }
