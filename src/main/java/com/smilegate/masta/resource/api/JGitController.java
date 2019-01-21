@@ -37,11 +37,19 @@ public class JGitController
         this.jGitService = jGitService;
     }
 
-
+    @GetMapping("log")
+    public ResponseEntity showGitLog() throws IOException, GitAPIException{
+        return new ResponseEntity(jGitService.showGitLog(), HttpStatus.OK);
+    }
 
     @GetMapping("/diff")
     public ResponseEntity showGitDiff() throws IOException, GitAPIException{
         return null;
+    }
+
+    @GetMapping("/remoteConnection")
+    public ResponseEntity gitRemoteConnection() throws IOException, GitAPIException{
+        return new ResponseEntity(jGitService.ConnectionRemoteRepository(), HttpStatus.OK);
     }
 
 
@@ -49,10 +57,9 @@ public class JGitController
     @ApiOperation(value = "git 페이지 : status 변경사항 보기 페이지")
     //status 변경사항 보기!! > 그냥 string으로 반환했음 client에서 힘들듯!! (testing)
     @SuppressWarnings("unused")
-
     public ResponseEntity gitStatus() throws IOException, GitAPIException{
         StringBuilder stringBuilder = new StringBuilder();
-        try (Repository repository = jGitService.ConnectionRepository()) {
+        try (Repository repository = jGitService.ConnectionLocalRepository()) {
             try (Git git = new Git(repository)) {
                 Status status = git.status().call();
                 stringBuilder.append("Added: " + status.getAdded() +"\n");
