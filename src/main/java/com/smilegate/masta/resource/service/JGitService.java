@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.IOException;
 
+
 @Slf4j
 @Service
 public class JGitService {
@@ -26,28 +27,17 @@ public class JGitService {
 
         FileRepositoryBuilder builder = new FileRepositoryBuilder();
 
-        Repository repository = null;
-
         //open an existing repository (by setGitDir method)
-        try{
-            repository = builder.setGitDir(repoDir)
+        try(Repository repository = builder.setGitDir(repoDir)
                     .readEnvironment()
                     .findGitDir()
-                    .build();
+                    .build()) {
 
             log.info("Having repository: " + repository.getDirectory());
-
-            // the Ref holds an ObjectId for any type of object (tree, commit, blob, tree)
             Ref head = repository.exactRef("refs/heads/master");
             log.info("Ref of refs/heads/master: " + head);
 
-        }catch (Exception e){
-            log.error(e.getMessage());
+            return repository;
         }
-
-        // clean up here to not keep using more and more disk-space for these samples
-//        FileUtils.deleteDirectory(repoDir.getParentFile());
-        return repository;
     }
-
 }

@@ -2,6 +2,9 @@ package com.smilegate.masta.resource.api;
 
 import com.smilegate.masta.resource.helper.ResourceHelper;
 import com.smilegate.masta.resource.service.JGitService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.eclipse.jgit.api.Git;
@@ -21,7 +24,10 @@ import java.io.IOException;
 
 @Slf4j
 @RestController
+
+
 @RequestMapping("git")
+@Api(value = "jGit", description = "jGit controller")
 public class JGitController
 {
 
@@ -32,8 +38,18 @@ public class JGitController
     }
 
 
-    //status 변경사항 보기!! > 그냥 string으로 반환했음 client에서 힘들듯!!
+
+    @GetMapping("/diff")
+    public ResponseEntity showGitDiff() throws IOException, GitAPIException{
+        return null;
+    }
+
+
     @GetMapping("/status")
+    @ApiOperation(value = "git 페이지 : status 변경사항 보기 페이지")
+    //status 변경사항 보기!! > 그냥 string으로 반환했음 client에서 힘들듯!! (testing)
+    @SuppressWarnings("unused")
+
     public ResponseEntity gitStatus() throws IOException, GitAPIException{
         StringBuilder stringBuilder = new StringBuilder();
         try (Repository repository = jGitService.ConnectionRepository()) {
@@ -56,6 +72,8 @@ public class JGitController
     }
 
 
+    //안쓰는 api
+    @SuppressWarnings("unused")
     @GetMapping("")
     public void gitAPI() throws IOException, GitAPIException {
         File repoDir = new File("C:/Users/user/Desktop/smilegate/resourceFile/.git");
@@ -73,9 +91,5 @@ public class JGitController
             Ref head = repository.exactRef("refs/heads/master");
             log.info("Ref of refs/heads/master: " + head);
         }
-
-        // clean up here to not keep using more and more disk-space for these samples
-//        FileUtils.deleteDirectory(repoDir.getParentFile() +"\n");
-
     }
 }
